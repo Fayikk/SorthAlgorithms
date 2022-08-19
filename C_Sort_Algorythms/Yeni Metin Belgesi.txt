@@ -1,0 +1,119 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 20
+//Binary Search Tree özelliklerini inceleyelim
+//İlk önce kök düğüm oluşturulur.
+//Sadece sol ve sağ çocuk eklenebilir.
+//Sol çocuklar daima parent'tan küçük
+//Sağ çocuklar ise daima parent'tan büyük olmalıdır.
+
+//Her eklenen düğüm leaf durumundadır.
+ 
+
+struct node{
+	int data;
+	struct node * left;
+	struct node * right;
+};
+struct node * root=NULL;
+
+struct node * newNode(int key){
+	struct node * temp;
+	temp=(struct node *)malloc(sizeof(struct node));
+	temp->data=key;
+	temp->left=NULL;
+	temp->right=NULL;
+	
+	if(root==NULL){
+		root=temp;
+	}
+	return temp;
+}
+
+void InOrder(struct node * root){
+	if(root!=NULL){
+		printf("%d",root->data);
+		InOrder(root->left);
+		
+		InOrder(root->right);
+	}
+}
+void PostOrder(struct node * root){
+	if(root!=NULL){
+		PostOrder(root->left);
+		PostOrder(root->right);
+		printf("%d",root->data);
+	}
+}
+
+void PreOrder(struct node * node){
+	if(root!=NULL){
+		printf("%d",root->data);
+		PreOrder(root->left);
+		PreOrder(root->right);
+	}
+}
+//Ekleme fonksiyonunu yazalım
+
+struct node * ekle(struct node * node,int value){
+	//Eklenecek konumun boş olması gerekmektedir.
+	if(node==NULL){
+		return newNode(value);
+	}
+	if(value<node->data){
+		node->left=ekle(node->left,value);
+	}
+	else if(value>node->data){
+		node->right=ekle(node->right,value);
+	}
+	//Şeklinde bir yazım gerçekleştirilir.
+}
+
+
+int main(int argc, char *argv[]) {
+
+int secim;
+int deger;
+while(1){
+	printf("1)InOrder traversal\n");
+	printf("2)PostOrder traversal\n");
+	printf("3)PreOrder Traversal\n");
+	printf("4)Eleman ekle\n");
+	printf("Lütfen secim yapınız: ");
+	scanf("%d",&secim);
+	switch(secim){
+		case 1:
+			printf("InOrder dolaşma seçildi");
+			InOrder(root);
+			break;
+		case 2:
+			printf("PostOrder dolaşma seçildi");
+			PostOrder(root);
+			break;
+			
+		case 3:
+			printf("PreOrder dolaşma seçildi");
+			PreOrder(root);
+			break;	
+		case 4:
+			printf("Eleman ekle secildi");
+			scanf("%d",&deger);
+			ekle(root,deger);	
+			
+	}
+}
+
+
+
+
+
+	return 0;
+}
+
+
+	
+	
+	
+	
+	
+	

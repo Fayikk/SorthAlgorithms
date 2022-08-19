@@ -1,0 +1,104 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 20
+//İşte burada tam anlamıyla çok fazla dinamşk bir yapıda olmasada gerekli kurallara uyularak yapıaldnırılan bir
+//ikili ağaç düzeni oluştrulmuştur.
+
+//İKİLİ AĞAÇ GERÇEKLEŞTİRİM
+//PreOrder geçişi
+
+//Buarda ağaçtaki her düğümü belli eden bir struct yapısı oluşturduk.
+struct node{
+	int data;
+	struct node * left;
+	struct node * right;
+};
+//yeni düğüm oluşturan ve bu düğümün hafızadaki adresini bize döndüren bir metoda ihtiyacımız vardır.
+
+struct node * newNode(int data){
+	struct node * New;
+	New=(struct node *)malloc(sizeof(struct node));
+	New->data=data;
+	New->right=NULL;
+	New->left=NULL;
+	
+	
+	return New;
+	//Öncellikle kök düğümü ekleyecez ve sonradan eklenen düğümleri bu ağacın etrafına sağıa ve soluna eşit bir şekilde yerleştireceğiz
+	//Kurallara uygun bir şekilde yerleştirme sağalayacağız.	
+	
+}
+//Şimdi yazdırma işlemi dışında gerekli ağaç dolaşma işlmelerini gerçekeleştirelim.
+
+void PreOrder(struct node * newNode,int veri){
+	//öncellikle bir koşul arayalım gerekli şartlar sağlanıyrsa devam edelim.
+	if(node==NULL){
+		//Burada eğer düğüm null değer döndürmekteyse;
+		//Kök yapıcı düğüme fonksiyonu yönlendirmemiz daha doğru bir karar olacaktır.
+		newNode(veri);
+	}
+	//PreOrder ifade ağaç içinde dolaşması şu şekildedir.
+	//data->left->right
+	//Dolaysısıyla yazma işlemi şu şekilde olacaktır.
+	printf("%d",node->data);
+	PreOrder(node->left);
+	PreOrder(node->right);
+	//Şeklinde bir yazım gerçekeleşecktir.
+}
+
+void PostOrder(struct node * newNode,int veri){
+	if(node==NULL){
+		newNode(veri);
+	}
+	//Postorder işleminde ağaçta dolaşma şu şekilde gereçekleşecektir.
+	//left->right->data
+	
+	PostOrder(node->left);
+	PostOrder(node->right);
+	printf("%d",node->data);
+	//Şeklinde dolaşma sağalanacaktır.
+}
+
+void InOrder(struct node * newNode,veri){
+	//aynı şekilde burada dolaşma sağlamamız gerekecektir.
+	if(node==NULL){
+		newNode(veri);
+	}
+	//InOrder'da ise dolaşma şu şekilde gerçekleşecektir.
+	//Left->data->right
+	//Dolayısıyla
+	InOrder(node->left);
+	printf("%d",node->data);
+	InOrder(node->right);
+	
+}
+
+//Bu şekilde ağaç içerisinde dolaşma işleminide gerçekleştirmiş oluyoruz.
+//Bugünlük bu kadar yeter haydi çocuklar uykuya.
+
+
+int main(int argc, char *argv[]) {
+	struct node * root=newNode(1);
+	root->left=newNode(2);
+	root->right=newNode(3);
+	root->left->left=newNode(4);
+	root->left->right=newNode(5);
+	root->right->left=newNode(6);
+	root->right->right=newNode(7);
+	//Şeklinde atama yapıalcaktır.
+	//Şeklinde yazma işlemine devam edebiliriz.
+	
+	
+	printf("%d \nsd",root->left->data);
+	printf("%d",root->left->right->data);
+
+	return 0;
+}
+
+
+	
+	
+	
+	
+	
+	

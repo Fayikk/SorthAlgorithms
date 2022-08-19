@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 20
+
+
+//İKİLİ AĞAÇ GERÇEKLEŞTİRİM
+//PreOrder geçişi
+
+struct node{
+	int data;
+	struct node * left;
+	struct node * right;
+};
+
+struct node * newNode(int data){
+	struct node * node;
+	node=(struct node *)malloc(sizeof(struct node));
+	node->data=data;
+	node->left=NULL;
+	node->right=NULL;
+	
+	return node;
+}
+
+void PreOrder(struct node * node){
+	if(node==NULL){
+		return;
+	}
+	printf("%d",node->data);
+	PreOrder(node->left);
+}
+
+//postorder-> left->right->root
+void PostOrder(struct node * node){
+	if(node==NULL){
+		return;
+	}
+	PostOrder(node->left);
+	PostOrder(node->right);
+	printf("%d",node->data);
+}
+
+//InOrder  left->data->right
+void InOrder(struct node * node){
+	if(node==NULL){
+		return;
+	}
+	InOrder(node->left);
+	printf("%d",node->data);
+	InOrder(node->right);
+	
+}
+
+
+
+int main(int argc, char *argv[]) {
+	
+	struct node * eleman;
+	int boyut;
+	printf("Ağac yapımzı kaç elemanlı olacak?");
+	scanf("%d",&boyut);
+	int i=0;
+	int deger;
+	while(i<=boyut){
+		printf("Agac icin eleman  giriniz");
+		scanf("%d",&deger);
+		eleman=d
+		
+	}
+
+
+	return 0;
+}
+
+
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 20
+//selection sort
+
+
+
+void selectionSort(int arr[],int size){
+	
+	int i,j;
+	int minIndex;
+	for(i=0;i<size;i++){
+		minIndex=i;
+		for(j=0;j<size;j++){
+			
+				if(arr[j]<arr[minIndex]){//Burada minimum indeksin değerini tutmak için kullanılan bir boklama işlemidir.
+					minIndex=j;
+				}
+			
+		}
+				int temp;//Burada ise gerekli parametreler birbirlerine eşitlenmek üzere gerekli operasyonlardan geçmektedirler.
+				temp=arr[i];
+				arr[i]=arr[minIndex];
+				arr[minIndex]=temp;	
+	}
+	
+}
+
+
+int main(int argc, char *argv[]) {
+
+//Şimdi yazdırma işlemi için gerekli operasyonları gerçekleştirelim.
+//Burada gerekli operasyon için öncellikle bir dizi tanımlaması yapmamzız gerekmektedir.
+int dizi[MAX];//Bunuda yukarıda define kütüphanesi ile gerekli atamalarını yukarıda yapmış bulunmaktayız.
+int size;//dizinin ne kadar büyük olduğunu buradan öğrenmemiz gerekecektir.
+int i;
+printf("Lütfen dizinizin kaç elemanlı olacağını karar verin?");
+scanf("%d",&size);
+
+for(i=0;i<size;i++){
+	scanf("%d",&dizi[i]);//burada gerekli atamalar daha önceden yapıldığı için kulllanıcı dan değer almaktayız. 
+}
+
+//metodumzuu çağıarlım
+
+selectionSort(dizi,size);
+
+for(i=0;i<size;i++){
+	printf("%d",dizi[i]);
+}
+
+	return 0;
+}
+
+
+	
+	
+	
+	
+	
+	

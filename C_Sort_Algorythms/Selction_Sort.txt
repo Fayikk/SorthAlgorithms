@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 20
+
+
+//Selection sort(seçme sıralaması)
+void selectionSort(int arr[],int size){
+	int i,j;
+	int minIndex;
+	for(i=0;i<size;i++){
+		minIndex=i;
+		for(j=i;j<size;j++){
+			if(arr[j]<arr[minIndex]){
+				minIndex=j;
+			}
+		}
+		int temp=arr[i];
+		arr[i]=arr[minIndex];
+		arr[minIndex]=temp;
+	}
+}
+
+
+
+
+
+
+
+int main(int argc, char *argv[]) {
+	
+	
+	
+	
+
+	return 0;
+}
+
+
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 20
+
+
+//İKİLİ AĞAÇ GERÇEKLEŞTİRİM
+struct node{
+	int data;
+	struct node * left;
+	struct node * right;
+};
+
+struct node * DugumEkle(int data){
+	struct node * eleman;
+	eleman=(struct node *)malloc(sizeof(struct node));
+	eleman->data=data;
+	eleman->left=NULL;
+	eleman->right=NULL;
+	
+	return eleman;
+}
+
+
+struct node * elemanEkle(struct node * DugumEkle,int data){
+	struct node * eleman1=DugumEkle(data);
+	eleman1->data=data;
+
+	if(eleman1<root->data){
+		root->left=DugumEkle(root->left,veri);
+	}
+	else{
+		root->right=DugumEkle(root->right,veri);
+	}
+	
+	return eleman1;
+}
+
+int main(int argc, char *argv[]) {
+//Create root;
+DugumEkle  node=new DugumEKle(1);
+
+node->left=DugumEkle(2);
+node->right=DugumEkle(3);
+node-data>left->left=DugumEkle(4);
+
+
+
+
+
+	return 0;
+}
+
+
+	
+	
+	
+	
+	
+	
