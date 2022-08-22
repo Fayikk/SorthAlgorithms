@@ -1,0 +1,132 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
+struct node{
+	int Siparis_No;
+	int Tamir_Zamani;
+	int Cihaz_Bilgi;
+	struct node * next;
+};
+struct node * temp=NULL;
+struct node * temp2=NULL;
+struct node * front=NULL;
+struct node * rear=NULL;
+struct node * temp3=NULL;
+
+void Eleman_Ekle(int no,int zaman,int bilgi){
+	struct node * eleman;
+	eleman=(struct node *)malloc(sizeof(struct node));
+	eleman->Siparis_No=no;
+	eleman->Tamir_Zamani=zaman;
+	eleman->Cihaz_Bilgi=bilgi;
+	eleman->next=NULL;
+	
+	if(front==NULL){
+		front=rear=eleman;
+	}
+	else{
+		rear->next=eleman;
+		rear=eleman;
+	}
+	
+}
+
+void Eleman_Silme(){
+	if(front==NULL){
+		printf("Silinecek eleman yoktur");
+	}
+	else{
+		temp=front->next;
+		free(front);
+		front=temp;
+	}
+}
+//Bir dizi oluşturup listedeki tamir zamanlarını bu diziye entegre edip bu şekilde bir sıralama gerçekleştirilebilir.
+
+void Sirala(){
+	if(front==NULL){
+		printf("Kuyrukta yazdırılacak eleman bulunmamaktadır");
+	}
+	
+	else if(front->next==NULL){
+		printf("Kuyrukta yalnızca bir eleman bulunmaktadır");
+	}
+	else
+	{
+		temp=front;
+		temp2=rear;
+		int i=1;
+		while(temp->next!=NULL){
+			i++;
+			temp=temp->next;
+			
+		}
+		printf("%d",i);
+	}
+}
+
+
+
+void Diziye_Kaydet(int size){
+	int i,j;
+	int minIndex;
+	int dizi[size];
+	temp=front;
+	for(i=0;i<size;i++){
+		
+		dizi[i]=temp->Tamir_Zamani;
+		temp=temp->next;
+	}
+	for(i=0;i<size;i++){
+		minIndex=i;
+		for(j=0;j<size-1;j++){
+			if(dizi[j]<dizi[minIndex]){
+				minIndex=j;
+			}
+		int temp3;
+		temp3=dizi[minIndex];
+		dizi[minIndex]=dizi[i];
+		dizi[i]=temp3;
+		}		
+		
+	}
+	temp3=front;
+	while(temp3->Tamir_Zamani!=dizi[0]){
+		temp3=temp3->next;
+	}
+	printf("En küçük tamir zamanına sahip elemanın Sipariş numarası:%d \n",temp3->Siparis_No);
+	printf("Kuyruktak en büyük tamir zamani: %d\n",dizi[0]);
+
+	
+	while(front->Tamir_Zamani!=dizi[size-1]){
+		front=front->next;
+		
+	}
+	printf("Kuyruktaki en küçük tamir zamani: %d \n ",dizi[size-1]);
+	printf("En küçük tamir zamanına sahip elemanın Sipariş numarası:%d\n",front->Siparis_No);
+	
+	
+	
+}
+
+
+int main() {
+int i;
+int size;	
+Eleman_Ekle(1,6,3);
+Eleman_Ekle(4,2,6);
+Eleman_Ekle(7,8,9);
+Eleman_Ekle(10,1,12);
+Eleman_Ekle(13,30,15);
+Sirala();
+
+
+printf("\nDizinin kaç elemanlı oldugunu giriniz");
+scanf("%d",&size);
+Diziye_Kaydet(size);
+
+	
+	return 0;
+}
