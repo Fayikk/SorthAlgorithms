@@ -1,0 +1,149 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node{
+	int Is_Numarasi;
+	int Islem_Suresi;
+	int Oncelik;
+	struct node * left;
+	struct node * right;
+};
+struct node * temp=NULL;
+struct node * temp2=NULL;
+struct node * eleman=NULL;
+
+
+
+struct node2{
+	int Is_Numarasi;
+	int Islem_Suresi;
+	int Oncelik;
+	struct node2 * left;
+	struct node2 * right;
+};
+struct node2 aktarma=NULL;
+
+
+struct node * Dugum_Olustur(int numara,int islem,int oncelik){
+	struct node * root;
+	root=(struct node *)malloc(sizeof(struct node));
+	root->Is_Numarasi=numara;
+	root->Islem_Suresi=islem;
+	root->Oncelik=oncelik;
+	root->left=NULL;
+	root->right=NULL;
+	return root;
+}
+
+struct node2 * Dugum_Olustur2(int numara,int islem,int oncelik){
+	struct node2 * root2;
+	 root2=(struct node2 *)malloc(sizeof(struct node2));
+	 root2->Is_Numarasi=numara;
+	 root2->Islem_Suresi=islem;
+	 root2->Oncelik=oncelik;
+	 root2->left=NULL;
+	 root2->right=NULL;
+	 return root2;
+	 
+}
+
+//Traversal
+void PreOrder(struct node * node){
+	if(node==NULL){
+		return;
+	}
+	printf("%d",node->Is_Numarasi);
+	PreOrder(node->left);
+	PreOrder(node->right);
+}
+
+void PostOrder(struct node * node){
+	if(node==NULL){
+		return;
+	}
+	PostOrder(node->left);
+	PostOrder(node->right);
+	printf("%d",node->Is_Numarasi);
+}
+
+void InOrder(struct node * node){
+	if(node==NULL){
+		return;
+	}
+	InOrder(node->left);
+	printf("%d",node->Is_Numarasi);
+	InOrder(node->right);
+}
+
+void Islem_Suresi(int sure){
+	
+	struct node * deneme;
+	deneme=(struct node *)malloc(sizeof(struct node));
+	deneme->Islem_Suresi=sure;
+	deneme->left=NULL;
+	deneme->right=NULL;
+	temp=deneme;
+	int i=0;
+	int toplam=0;
+	int ortalama=0;
+	while(temp->next!=NULL){	
+		
+		toplam=toplam+temp->sure;
+		i++;
+		
+		temp=temp->next;
+	}
+	ortalama=toplam/i;
+	printf("Ortalama ıslem suresi: %d",ortalama);
+	
+}
+
+void Oncelik_Belirleme(int sure,int oncelik){
+	struct node * atama;
+	atama=(struct node *)malloc(sizeof(struct node));
+	atama->Islem_Suresi=sure;
+	atama->Oncelik=oncelik;
+	
+	if(atama->ıslem>=0 && atama->ıslem<=30){
+		atama->oncelik=1;
+	}
+	else if(atama->islem>30 && atama->islem<=50){
+		atama->oncelik=2;
+	}
+	else if(atama->ıslem>50){
+		atama->oncelik=3
+	}
+	else{
+		printf("");
+		return;
+	}
+}
+
+void Agac_Aktar(struct node * test){
+	struct node* aktarim;
+	aktarim=(struct node *)malloc(sizeof(struct node));
+	
+	struct node2 * aktarim2;
+	aktarim2=(struct node2 *)malloc(sizeof(struct node2));
+	
+	aktarim->Oncelik=oncelik;
+	InOrder(test);
+	//oncelik verilerini alıp aktarma 
+	if(test->oncelik==1){
+		test=aktarim2;
+	}
+}
+
+
+int main() {
+	
+	eleman=Dugum_Olustur(1,2,3,);
+	eleman->left=Dugum_Olustur(2,3,4);
+	eleman->right=Dugum_Olustur(4,5,6);
+	eleman->left->left=Dugum_Olustur(7,8,9);
+	
+	Agac_Aktar(eleman);
+	
+	
+
+	return 0;
+}
