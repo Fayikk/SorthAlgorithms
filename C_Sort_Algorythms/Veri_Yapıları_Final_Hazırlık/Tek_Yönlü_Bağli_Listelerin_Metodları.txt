@@ -1,0 +1,141 @@
+#include <stdio.h>
+#include <stdlib.h>
+//tek yönlü bağlı listeye eleman ekleme
+struct node{
+	int data;
+	struct node * next;
+	struct node * prev;
+};
+struct node * firstNode=NULL;
+struct node * next=NULL;
+struct node * prev=NULL;
+struct node * temp=NULL;
+struct node * temp2=NULL;
+void addFirst(int sayi){
+	struct node * eleman;
+	eleman=(struct node *)malloc(sizeof(struct node));
+	eleman->data=sayi;
+	eleman->next=NULL;
+	eleman->prev=NULL;
+	if(firstNode==NULL){
+		firstNode=eleman;
+		firstNode->next=NULL;
+	}
+	else{
+		eleman->next=firstNode;
+		firstNode=eleman;
+		
+		
+	}
+	
+	
+}
+
+void addLast(int sayi){
+	struct node * eleman;
+	eleman=(struct node *)malloc(sizeof(struct node));
+	eleman->data=sayi;
+	eleman->prev=NULL;
+	if(firstNode==NULL){
+		firstNode=eleman;
+		eleman->prev=NULL;
+		eleman->next=NULL;
+	}
+	else{
+		temp=firstNode;
+		while(temp->next!=NULL){
+			temp=temp->next;
+		}
+		temp->next=eleman;
+		eleman->next=NULL;
+		eleman->prev=temp;
+	}
+	
+}
+
+void Araya_Ekle(int n,int sayi){//Buradaki int n ifadesi hangi elemandan önce eklenmesini istediğimizi seçiyoruz.
+	struct node * eleman;
+	eleman=(struct node *)malloc(sizeof(struct node));
+	eleman->data=sayi;
+	eleman->next=NULL;
+	eleman->prev=NULL;
+	if(firstNode==NULL){
+		eleman=firstNode;
+		eleman->next=NULL;	
+	}
+	else{
+		temp=firstNode;
+		while(temp->next->data!=n)
+		{
+			temp=temp->next;
+				
+		}
+		temp2=temp->next;
+		temp->next=eleman;
+		eleman->next=temp2;
+		
+		
+}
+
+void aradan_eleman_Cikar(int n){
+	if(firstNode==NULL){
+		printf("Listede çıkarılacak eleman bulunmamaktadır");
+	}
+	else if(firstNode->next==NULL){
+		free(firstNode);
+		printf("Listede silinecek eleman bulunamamaktadır");
+	}
+	else{
+		
+		temp=firstNode;
+		while(temp->next->data!=NULL){
+			temp=temp->next;
+		}
+		temp2=temp->next->next;
+		free(temp->next);
+		temp2=temp->next;
+		
+	}
+}
+
+void Bastan_Eleman_Silme(){
+	if(firstNode==NULL){
+		printf("Listede silinecek eleman bulunmamaktadır");
+	}
+	else{
+		temp=firstNode->next;
+		free(firstNode);
+		firstNode=temp;
+	}
+}
+
+void Sondan_Eleman_Silme(){
+	if(firstNode==NULL){
+		printf("Listede silinecek eleman bulunmamaktadır");
+	}
+	else if(firstNode->next==NULL){
+		free(firstNode);
+		printf("Listede silineceke eleman bulunmamaktadır");
+	}
+	else{
+		temp=firstNode;
+		while(temp->next!=NULL){
+			temp=temp->next;
+		}
+		temp2=temp->prev;
+		temp2->next=NULL;
+		free(temp);
+		temp2->next=NULL;
+	}
+}
+int main() {
+
+	
+	
+	
+
+
+
+
+return 0;
+}

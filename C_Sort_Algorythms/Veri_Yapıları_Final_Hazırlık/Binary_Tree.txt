@@ -1,0 +1,109 @@
+#include <stdio.h>
+#include <stdlib.h>
+//Binary treelerle çalışalım.
+//Şimdi binary tree için bir gerçekleştirim yapalım.
+
+struct node{
+	int data;
+	struct node * left;
+	struct node * right;
+};
+//Şimdi ise ikili ağaç için düğüm oluşturmayı görelim.
+struct node * newNode(int veri){
+	struct node * node;
+	node=(struct node *)malloc(sizeof(struct node));
+	node->data=veri;
+	node->left=NULL;
+	node->right=NULL;
+	
+	//geri dönüş değerine sahip olmalıdır.
+	return node;
+}
+//Yukarıda oluşturduğumuz yapıya göre gerekli yapımızı oluşturup artık eleman ekleme işlemini gerçekleştirelim.
+
+struct node * elemanEkle(struct node * node,int veri){
+	if(node==NULL){//Burada ağaç yapımızın boş olma durumunu kontrol ettik.
+		node=newNode(veri);
+	}
+	else{
+		if(veri<node->data){
+			node->right=elemanEkle(node->right,veri);
+		}
+		else{
+			node->left=elemanEkle(node->left,veri);
+		}
+	}
+	return node;
+}
+
+
+//Şimdi traversal işlemlerimizi gerçekleştirelim
+
+//Preorder işleminde kök önceliklidir.
+//root->left->right şeklindedir.
+void PreOrder(struct node * root){
+	if(root!=NULL){
+		printf("%d",root->data);
+		PreOrder(root->left);
+		PreOrder(root->right);
+	}
+	
+}
+
+//post işleminde kök'e öncelik tanınmaz
+//left->right->root
+void PostOrder(struct node * root){
+	if(root!=NULL){
+		PostOrder(root->left);
+		PostOrder(root->right);
+		printf("%d",root->data);
+	}
+}
+
+//Inorder işleminde kök 2. öncelik sırasındadır.
+//left->root->right
+
+void InOrder(struct node * root){
+	if(root!=NULL){
+		InOrder(root->left);
+		printf("%d",root->data);
+		InOrder(root->right);
+	}
+}
+
+int main(int argc, char *argv[]) {	
+//Şimdi bir ağaç yapımız için deneme yapalım
+
+int secim;
+while(1){
+	printf("Asagidakiler ile seciminizi yapiniz\n");
+	printf("1)Eleman eklemek için basınız\n");
+	printf("2)Elemanları InOrder listelemek icin basınız\n");
+	scanf("%d",&secim);
+	switch(secim){
+		case 1:
+			printf("Eleman eklemeyi sectiniz\n");
+			scnaf("%d",&secim);
+			elemanEkle(node,secim);
+			break;
+		case 2:
+			printf("Elemanlari Inorder şekilde traver etmeyi sectiniz\n");
+			InOrder(node);
+			break;	
+	}
+	
+	
+	
+	
+	
+	
+}
+
+
+
+
+
+
+
+	return 0;
+}

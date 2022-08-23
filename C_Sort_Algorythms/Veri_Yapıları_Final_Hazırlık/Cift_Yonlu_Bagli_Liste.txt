@@ -1,0 +1,180 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+//Çift yönlü bağlı liste 
+//Burada tek yönlü bağlı listelerin dışında sonrakini işaret etmek dışında birde,kendisinden öncekini
+//İşaret etmektedir
+//ilk düğüm kendinden önceyi null olarak ifade ederken,son düğün sonraki işaretçisi ise o da null değer atmaaktadıre.
+
+struct node{
+	int data;
+	struct node * next;
+	struct node * prev;
+};
+struct node * temp=NULL;
+struct node * temp2=NULL;
+struct node * firstNode=NULL;
+struct node  * temp3=NULL;
+//düğüm oluşturan bir fonksiyon yazalım
+
+struct node * dugumOlustur(int veri){
+	struct node * dugum;
+	dugum=(struct node *)malloc(sizeof(struct node));//malloc fonksiyonu ile ram'de dinami olarak yer oluşturuyoruz.
+	dugum->data=veri;
+	dugum->next=NULL;
+	dugum->prev=NULL;
+	//Şeklinde dugum oluşturması yaptık
+	return dugum;
+}
+
+void Sona_Ekle(int veri){
+	struct node * eleman;
+	eleman=(struct node *)malloc(sizeof(struct node));
+	eleman->data=veri;
+	eleman->next=NULL;
+	eleman->prev=NULL;
+	
+	if(firstNode==NULL){
+		firstNode=eleman;
+		
+	}
+	else{
+		temp=firstNode;
+		while(temp->next!=NULL){
+			temp=temp->next;
+		}
+		//temp2=temp->prev;
+		temp->next=eleman;
+		eleman->prev=temp;
+		eleman->next=NULL;
+	}
+};
+
+void Basa_Ekle(int veri){
+	struct node * eleman;
+	eleman=(struct node *)malloc(sizeof(struct node));
+	eleman->data=veri;
+	eleman->next=NULL;
+	eleman->prev=NULL;
+	if(firstNode==NULL){
+		firstNode=eleman;
+	}
+	else{
+		firstNode->prev=eleman;
+		eleman->next=firstNode;
+		firstNode=eleman;
+	}
+	
+}
+
+void arayaEkle(int n,int sayi){//Burada hangi elemanın ekleneceği ve hangi elemandan önce ekleneceği kontolr edilmektedir
+	struct node * eleman;
+	eleman=(struct node *)malloc(sizeof(struct node));
+	eleman->data=sayi;
+	eleman->next=NULL;
+	eleman->prev=NULL;
+	if(firstNode==NULL){
+		printf("Liste boştur,böyle bir eleman bulunamadı veya eklenemez");
+	}
+	else{
+		temp=firstNode;
+		while(temp->next->data!=n){
+			temp=temp->next;
+		}
+		temp2=temp->next;
+		temp->next=eleman;
+		eleman->next=temp2;
+	}
+}
+
+void Bastan_Sil(){
+	if(firstNode==NULL){
+		printf("Listede silinecek eleman bulunamadı");
+	}
+	else{
+		if(firstNode->next==NULL){
+			free(firstNode);
+			printf("Eleman silindi,listede başka eleman bulunamadı");
+		}
+		else{
+			temp=firstNode->next;
+			free(firstNode);
+			firstNode=temp;
+		}
+	}
+}
+
+void Sondan_Sil(){
+	if(firstNode==NULL){
+		printf("Listede silinecek eleman bulunmamaktadır");
+		
+	}
+	else if(firstNode->next==NULL){
+		free(firstNode);
+		printf("eleman silindi,Listede eleman bulunmamaktadır");
+	}
+	else{
+		temp=firstNode;
+		while(temp->next!=NULL){
+			temp=temp->next;
+		}
+		temp2=temp->prev;
+		temp2->next=temp;
+		free(temp);
+		temp2->next=NULL;
+	}
+}
+
+void Aradan_Sil(int n){//buradaki n silinmek istenen değerin hangi elemandan önce gelen değer olduğunu bildirmek için kullanılır.
+	if(firstNode==NULL){
+		printf("Malesef böyle bir eleman bulunamadı");
+	}
+	else{
+		temp=firstNode;
+		while(temp->next->data!=n){
+			temp=temp->next;
+		}
+		temp2=temp->prev;
+		temp3=temp->next;
+		free(temp);
+		temp2->next=temp3;
+		temp3->prev=temp2;
+	}
+}
+
+void Yazdir(){
+	if(firstNode==NULL){
+		printf("Listede yazdırılacak eleman bulunmamaktadır");
+	}
+	else{
+		if(firstNode->next==NULL){
+			printf("Listede 1 eleman bulunmaktadır");
+		}
+		else{
+			
+			temp=firstNode;
+			while(temp->next!=NULL){
+				temp=temp->next;
+				printf("%d",temp->data);	
+			}
+			printf("%d",temp->data);
+		}
+	}
+}
+
+int main(int argc, char *argv[]) {
+	//Çift yönlü bağlı liste ifadesi bu kadardı eğer isterseniz daha düzenli görünmesi açısından.
+	//switch-case yapısı oluşturabilirsiniz.
+	Basa_Ekle(3);
+	Basa_Ekle(4);
+	Basa_Ekle(5);
+	Basa_Ekle(6);
+	arayaEkle(4,9);
+	Sona_Ekle(111);
+	//Bastan_Sil();
+	Sondan_Sil();
+	Yazdir();
+	//Aradan_Sil(4);
+	
+	return 0;	
+}

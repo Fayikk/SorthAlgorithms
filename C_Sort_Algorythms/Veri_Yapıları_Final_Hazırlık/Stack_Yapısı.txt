@@ -1,0 +1,73 @@
+#include <stdio.h>
+#include <stdlib.h>
+//Stack yapısı
+//Stacklerin bağlı liste uygulaması
+//Stack için öncellikle gerekli yapımızı oluşturduk.
+//stack için top() kavramı eklenen son elemana eşittir.
+struct node{
+	int data;
+	struct node * next;
+};
+struct node * top=NULL;
+struct node * temp=NULL;
+struct node * temp2=NULL;
+
+
+void push(int veri){
+	struct node * eleman;
+	eleman=(struct node *)malloc(sizeof(struct node));
+	eleman->data=veri;
+	eleman->next=NULL;
+	if(top!=NULL){
+		eleman->next=top;
+		top=eleman;
+	}
+}
+
+//Stack(yığın yapısında silme işlemlerini gerçekleştirelim)
+
+void pop(){
+	//Silme işlemi herzaman top değerden yapılacaktır.
+	if(top->data==NULL){
+		printf("Stack'te eleman bulunmamaktadır");
+	}
+	else{
+		temp=top;
+		top=top->next;
+		free(temp);
+	}
+}
+
+int peek(){
+	//Buradaki peek değeri yığın yapısında en üstteki elemanı top() göstermektedir.
+	return top->data;
+}
+
+
+void Yazdir(){
+	temp2=top;
+	while(temp2->next!=NULL){
+		printf("%d",temp2->data);
+		temp2=temp2->next;
+		
+	}
+	printf("%d",temp2->data);
+}
+
+
+int main(int argc, char *argv[]) {	
+
+push(1);
+push(2);
+push(3);
+push(4);
+push(5);
+push(6);
+push(7);
+
+Yazdir();
+
+
+
+	return 0;
+}

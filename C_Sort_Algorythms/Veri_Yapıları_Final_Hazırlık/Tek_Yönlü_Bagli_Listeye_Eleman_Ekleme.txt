@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+//tek yönlü bağlı listeye eleman ekleme
+struct node{
+	int data;
+	struct node * next;
+};
+
+
+int main() {
+	struct node * eleman;
+	eleman=(struct node *)malloc(sizeof(struct node));
+	
+	struct node * eleman2;
+	eleman2=(struct node *)malloc(sizeof(struct node));
+	
+	struct node * eleman3;
+	eleman3=(struct node *)malloc(sizeof(struct node));
+	
+	struct node * eleman4;
+	eleman4=(struct node *)malloc(sizeof(struct node));
+	
+	eleman->data=1;
+	eleman->next=eleman2;
+	
+	eleman2->data=2;
+	eleman2->next=eleman3;
+	
+	eleman3->data=3;
+	eleman3->next=eleman4;
+	
+	eleman4->data=4;
+	eleman4->next=NULL;
+	
+	printf("%d - %d - %d - %d ",eleman->data,eleman2->data,eleman3->data,eleman4->data);
+	
+	
+	
+	
+	
+
+
+
+
+return 0;
+}

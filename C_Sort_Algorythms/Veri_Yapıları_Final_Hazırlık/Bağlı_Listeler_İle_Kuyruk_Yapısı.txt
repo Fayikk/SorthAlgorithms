@@ -1,0 +1,82 @@
+#include <stdio.h>
+#include <stdlib.h>
+//Şimdi beraber kuyruk veri yapısını inceleyelim
+//first in first out kuralı geçerlidir
+//bankamatik sırasındaki insanların oluşturduğu kuyruğu görelim.
+struct node{
+	int data;
+	struct node * next;
+};
+struct node * front=NULL;
+struct node * rear=NULL;
+struct node * temp=NULL;
+struct node * temp2=NULL;
+
+
+//Kuyruk yapımıza ekleme işlemlerimizi gerçekleştirelimç
+void enqueue(int veri){
+	struct node * eleman;
+	eleman=(struct node *)malloc(sizeof(struct node));
+	eleman->data=veri;
+	eleman->next=NULL;
+	if(front==NULL){
+		front=rear=eleman;
+	}
+	else{
+		//Burada otomatik olarak kuyurk sonuna eleman ekleme işlemini gerçekleştireceğiz
+		temp=front;
+		while(temp->next!=NULL){
+			temp=temp->next;
+		}
+		temp->next=eleman;
+		rear=eleman;
+				
+	}	
+}
+
+//kuyruk yapısından eleman silme işlemleri
+void dequeue(){
+	if(front==NULL){
+		printf("Kuyrukta silinecek eleman bulunamadı");
+	}
+	else{
+		//eleman silme işlemi baştan yapılacaktır.
+		temp=front->next;
+		free(front);
+		front=temp;
+	}
+}
+
+
+//Şimdi kuyruk işlemleri için yazdırma işlemlerini görelim.
+void show(){
+	if(front==NULL){
+		printf("Kuyrukta yazdırılacak eleman bulunmamaktadır");
+	}
+	else{
+		temp=front;
+		while(temp->next!=NULL){
+			printf("%d",temp->data);
+			temp=temp->next;
+		}
+		printf("%d",temp->data);
+	}
+}
+
+
+int main(int argc, char *argv[]) {	
+
+enqueue(1);
+enqueue(2);
+enqueue(3);
+enqueue(4);
+enqueue(5);
+dequeue();
+dequeue();
+dequeue();
+enqueue(9);
+
+show();
+
+	return 0;
+}
