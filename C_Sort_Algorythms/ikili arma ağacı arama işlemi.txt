@@ -1,0 +1,150 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node{
+	int data;
+	struct node * left;
+	struct node * right;
+};
+struct node * root=NULL;//Burada kök oluşumu yaptık.Unutmayın ikili ağaçlarda yalnızca 1 tane kök bulunmaktadır.
+
+//Yeni bir node oluşturmak
+struct node * newNode(int veri){
+	struct node * dugum;
+	dugum=(struct node *)malloc(sizeof(struct node));
+	dugum->data=veri;
+	dugum->left=NULL;
+	dugum->right=NULL;
+	
+	return dugum;
+	
+}
+
+struct node * elemanEkle(struct node * node,int veri){
+	struct node * eleman;
+	eleman=(struct node *)malloc(sizeof(struct node));
+	eleman->data=veri;
+	eleman->right=NULL;
+	eleman->left=NULL;
+	
+	if(node==NULL){
+		return newNode(veri);
+	}
+	else{
+		if(node->data>veri){
+			node->left=elemanEkle(node->left,veri);
+		}
+		else if(node->data<veri)
+		{
+			node->right=elemanEkle(node->right,veri);	
+		}
+	}
+}
+
+//Şimdi traverse işlemlerini gerçekleştirelim.
+
+void InOrder(struct node * node){
+	if(node==NULL){
+		return;
+	}
+	else{
+		InOrder(node->left);
+		printf("%d",node->data);
+		InOrder(node->right);
+	}
+}
+
+void PreOrder(struct node * node){
+	if(node==NULL){
+		return;
+	}
+	else{
+		printf("%d",node->data);
+		PreOrder(node->left);
+		PreOrder(node->right);
+	}
+}
+
+void PostOrder(struct node * node){
+	if(node==NULL){
+		return;
+	}
+	PostOrder(node->left);
+	PostOrder(node->right);
+	printf("%d",node->data);
+}
+
+struct node * search(int aranan){
+	struct node * temp;
+	temp=root;
+	
+	while(temp->data!=aranan){//temp'in data'sı aranan değere eşit olana kadar.
+		if(temp!=NULL){//Burada karar yapısı koşulunda ise.Döngü üçerisinde dönerken
+						//temp'in değeri null değere eşit olmadığı sürece içeride dön anlamında gelmektedir
+						
+			printf("%d",temp->data);//yapıya her girmeden önce ise o anki temp'in veri'sini ekrana yazdırmamız istenecektir
+			//Şimdi arama sürecinde ne tarafa doğru dallanacağına bakacağız
+			if(aranan<temp->data){//burada aranan değer aslında temp geçici değişkeni ile tutulmaktadır ancak
+			//aranan değerimiz ikili ağaaç yapısındanda bildiğimiz node(dugum)'tur.Aranan değer temp'in datasından küçük ise
+			//temp her seferinde bir değer sola arama yapmak için gidecektir.
+				temp=temp->left;//Burada koşul sağlandığında veya sağlanmadığında geçerli olacak yada olmayacak gereklilikler yerine getirilir.
+			}
+			else{
+				temp=temp->right;
+			}
+		}
+		if(temp==NULL){//ağaç dolaşıldı ve aranan eleman ağaçta bulunamadıysa.buda ağaç içinde dolaşan temp değerinin NULL(boş) değere eşit olduğu anlamına gelmektedir.
+						
+			printf("\n aradiginiz deger agacta bulunmuyor");
+			return NULL;
+		}
+	}
+	printf("%d",temp->data);//while döngüsünün şartına uygun bir pozisyon gerçekleşirse blok içerisinde aranan eleman bulunmuş demektir ve dışarı çıkılacaktır.
+	//aranan elemanı yazdırma işlemini gerçekleştiririz.
+	return temp;
+}
+
+
+struct node * ara(int bul){
+	struct node * bekci;
+	bekci=(struct node *)malloc(sizeof(struct node));
+	
+	bekci=root;
+	while(bekci->data!=bul){
+		if(bekci!=NULL){
+			printf("%d",bekci->data);
+			if(bul<bekci->data){
+				bekci=bekci->left;
+			}
+			else{
+				bekci=bekci->right;
+			}
+		
+		}
+		if(bekci==NULL){
+			printf("Aranan eleman bu agac icerisinde bulunamadı");
+		}
+		
+	}
+	printf("%d",bekci->data);
+	
+	return bekci;
+}
+
+
+
+//Gerekli işlemleri gerçekleştirdik.
+//Şimdi isi arama/bulma fonksiyonlarını gerçekleştirelim.
+
+int main(int argc, char *argv[]) {
+	
+	struct node * kume=newNode(1);
+	kume->left=newNode(2);
+	kume->right=newNode(3);
+	kume->left->left=newNode(4);
+	
+	ara(5);
+	
+	
+	return 0;
+}

@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node{
+	int Is_Numarasi;
+	int Is_Adi;
+	int Islem_Suresi;
+	int Oncelik;
+	struct node * right;
+	struct node * left;
+};
+struct node * root=NULL;
+
+
+struct node * newNode(int numara,int adi,int sure,int oncelik){
+	struct node * temp;
+	temp=(struct node *)malloc(sizeof(struct node));
+	temp->Is_Numarasi=numara;
+	temp->Is_Adi=adi;
+	temp->Islem_Suresi=sure;
+	temp->Oncelik=oncelik;
+	if(root==NULL){
+		root=temp;
+	}
+	return temp;
+}
+struct node * Eleman_Ekle(struct node * node,int numara,int adi,int sure,int oncelik){
+	if(node==NULL){
+		return newNode(numara, adi, sure, oncelik);
+	}
+	if(numara<node->Is_Numarasi){
+		node->left=Eleman_Ekle(node->left,numara, adi, sure, oncelik);
+	}
+	else if(numara>node->Is_Numarasi){
+		node->right=Eleman_Ekle(node->right,numara, adi, sure, oncelik);
+	}
+	return node;
+}
+
+void InOrder(struct node * root){
+	if(root!=NULL){
+		InOrder(root->left);
+		printf("%d",root->Is_Numarasi);
+		InOrder(root->right);
+	}
+}
+int main() {
+Eleman_Ekle(root,1,2,3,4);
+Eleman_Ekle(root,2,3,4,5);
+Eleman_Ekle(root,3,4,5,6);
+Eleman_Ekle(root,4,5,6,7);
+
+printf("%d",root->Is_Numarasi);
+	
+return 0;
+}

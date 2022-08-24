@@ -1,0 +1,105 @@
+//Dinamik olarak ekleme,çıkarma işlemini uygulayamadım.
+//Bu haliyle yollamak zorunda kaldım.
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node{
+	int Is_Numarasi;
+	char Is_Adi[60];
+	int Islem_Suresi;
+	int Oncelik;
+	struct node * right;
+	struct node * left;
+};
+struct node * temp=NULL;
+
+struct node *Dugum_Ekle(int numara,int adi,int sure,int oncelik){
+	struct node * root;
+	root=(struct node *)malloc(sizeof(struct node));
+	root->Is_Numarasi=numara;
+	root->Is_Adi=adi;
+	root->Islem_Suresi=sure;
+	root->Oncelik=oncelik;
+	root->left=NULL;
+	root->right=NULL;
+	
+	return root;
+}
+
+struct node * Eleman_Ekle(struct node * root,int numara,int adi,int sure,int oncelik){
+	if(root==NULL){
+		Dugum_Ekle(numara,adi,sure,oncelik);
+	}
+	else{
+		if(root->Is_Numarasi>numara){
+			root->left=Eleman_Ekle(root->left,numara,adi,sure,oncelik);
+		}
+		else{
+			root->right=Eleman_Ekle(root->right,numara,adi,sure,oncelik);
+		}
+	}
+	return root;
+}
+
+void InOrder(struct node * root){
+	if(root!=NULL){
+		InOrder(root->left);
+		printf("%d",root->Is_Numarasi);
+		InOrder(root->right);
+	}
+}
+
+void PostOrder(struct node * root){
+	if(root!=NULL){
+		PostOrder(root->left);
+		PostOrder(root->right);
+		printf("%d",root->Is_Numarasi);
+	}
+}
+
+void PreOrder(struct node * root){
+	if(root!=NULL){
+		printf("%d",root->Is_Numarasi);
+		PreOrder(root->left);
+		PreOrder(root->right);
+	}
+}
+
+int main() {
+	
+struct node * eleman=NULL;	
+	
+while(1){
+int secim;
+printf("Agac yapısına eleman eklemek icin 1 basin\n");
+printf("Cikis icin 2e basin\n");
+scanf("%d",&secim);
+switch(secim){
+	int a,b,c,d;
+	case 1:
+			
+			printf("is numarasi: ");scanf("%d\n",&a);
+			printf("is adi: ");scanf("%d\n",&b);
+			printf("islem suresi : ");scanf("%d\n",&c);
+			printf("Oncelik degeri  :");scanf("%d\n",&d);
+			eleman=Eleman_Ekle(eleman,a,b,c,d);
+		break;
+	case 2	:
+		return 0;
+}
+
+
+
+
+
+
+
+}	
+	
+	
+
+	
+	return 0;
+}
