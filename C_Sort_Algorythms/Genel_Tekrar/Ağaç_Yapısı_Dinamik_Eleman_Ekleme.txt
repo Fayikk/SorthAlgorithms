@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include <stdlib.h>
+//Ağaç yapsısı
+
+
+struct node{
+	int data;
+	struct node * right;
+	struct node * left;	
+};
+
+struct node * newNode(int data){
+	struct node * node;
+	node=(struct node *)malloc(sizeof(struct node));
+	node->data=data;
+	node->left=NULL;
+	node->right=NULL;
+	
+	return node;
+	
+}
+
+struct node * elemanEkle(struct node * root,int veri){
+	struct node * eleman=newNode(veri);
+	if(root==NULL){
+		newNode(veri);
+	}
+	else{
+		if(root->data>veri){
+			root->left=elemanEkle(root->left,veri);
+		}
+		else{
+			root->right=elemanEkle(root->right,veri);
+		}
+	}
+	return eleman;
+}
+
+
+void preOrder(struct node * node){
+	if(node==NULL){
+		return;
+	}
+	printf("%d",node->data);
+	preOrder(node->left);
+	preOrder(node->right);
+}
+
+void postOrder(struct node * node){
+	if(node==NULL){
+		return;
+	}
+	postOrder(node->left);
+	postOrder(node->right);
+	printf("%d",node->data);
+}
+
+void inOrder(struct node * node){
+	if(node==NULL){
+		return;
+	}
+	inOrder(node->left);
+	printf("%d",node->data);
+	inOrder(node->right);
+}
+
+int main(int argc, char *argv[]) {
+	//Burada yapımızı oluşturalım
+	
+	
+	struct node * dugum=newNode(1);
+	dugum->left=newNode(2);
+	dugum->right=newNode(3);
+	
+	dugum->left->right=newNode(5);
+	elemanEkle(dugum,4);
+	
+	printf("%d",dugum->left->left->data);
+	
+	return 0;
+}

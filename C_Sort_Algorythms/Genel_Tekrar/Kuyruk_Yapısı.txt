@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
+//Kuyruk yapısı
+//first in first out kuralı geçerlidir
+
+struct node{
+	int data;
+	
+	struct node * next;
+};
+struct node * front=NULL;
+struct node * rear=NULL;
+struct node * temp=NULL;
+//Kuyruğa ekleme işlemi
+void enqueue(int veri){
+	struct node * eleman;
+	eleman=(struct node *)malloc(sizeof(struct node));
+	eleman->data=veri;
+	eleman->next=NULL;
+	
+	if(front==NULL){
+		front=rear=eleman;
+	}
+	else{
+		temp=front;
+		while(temp->next!=NULL){
+			temp=temp->next;
+		}
+		temp->next=eleman;
+		rear=eleman;
+	}
+	
+	
+}
+//Kuyruktan silme işlemi
+void dequeue(){
+	//ilk eleman silinecektir
+	if(front==NULL){
+		printf("Kuyrukta silinecek eleman bulunmamaktadır");
+	}
+	else{
+		temp=front->next;
+		free(front);
+		front=temp;
+	}
+}
+//Kuyruğu yazdırma işlemi
+void yazdir(){
+	if(front==NULL){
+		printf("Kuyrukta eleman bulunmamaktadır");
+	}
+	else{
+		temp=front;
+		while(temp->next!=NULL){
+			printf("%d - ",temp->data);
+			temp=temp->next;
+		}
+		printf("%d - ",temp->data);
+	}
+}
+
+int main(int argc, char *argv[]) {
+	
+enqueue(1);	
+enqueue(2);
+enqueue(3);
+enqueue(4);
+enqueue(5);
+enqueue(6);
+enqueue(7);
+dequeue();
+
+
+yazdir();	
+	
+	return 0;
+}

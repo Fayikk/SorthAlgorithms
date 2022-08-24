@@ -1,0 +1,157 @@
+#include <stdio.h>
+#include <stdlib.h>
+//çift yonlu bagli liste
+
+struct node{
+	int data;
+	struct node * next;
+	struct node * prev;
+};
+struct node * temp=NULL;
+struct node * temp2=NULL;
+struct node * temp3=NULL;
+struct node * firstNode=NULL;
+
+//basa eleman ekle
+void basaEkle(int veri){
+	struct node * eleman;
+	eleman=(struct node *)malloc(sizeof(struct node));
+	eleman->data=veri;
+	eleman->next=NULL;
+	eleman->prev=NULL;
+	if(firstNode==NULL){
+		firstNode=eleman;
+		eleman->next=NULL;
+		eleman->prev=NULL;
+	}
+	else{
+		temp->next=firstNode;
+		temp=eleman;
+		firstNode=eleman;
+		eleman->prev;
+	}
+}
+//araya eleman ekle
+void arayaEkle(int n,int veri){
+	struct node * eleman;
+	eleman=(struct node *)malloc(struct node *);
+	eleman->data=veri;
+	eleman->next=NULL;
+	eleman->prev=NULL;
+	if(firstNode==NULL){
+		firstNode=eleman;
+	}
+	else{
+		
+		while(temp->next->data!=NULL){
+			temp=temp->next;
+		}
+		temp2=temp->next;
+		temp->next=eleman;
+		eleman->prev=temp;
+		eleman->next=temp2;
+	}
+}
+//sona eleman ekle
+void sonaEkle(int veri){
+	struct node * eleman;
+	eleman=(struct node *)malloc(sizeof(struct node));
+	eleman->data=veri;
+	eleman->next=NULL;
+	eleman->prev=NULL;
+	if(firstNode==NULL){
+		firstNode=eleman;
+	}
+	else{
+		temp=firstNode;
+		while(temp->next!=NULL){
+			temp=temp->next;
+		}
+		temp->next=eleman;
+		eleman->prev=temp;
+		eleman->next=NULL;
+	}
+		
+}
+//bastan eleman silme
+void bastanSil(){
+	if(firstNode==NULL){
+		printf("Listede silinecek eleman bulunmamaktadır");
+	}
+	else{
+		temp=firstNode->next;
+		free(firstNode);
+		firstNode=temp;
+	}
+}
+//Aradan eleman silme
+void aradanSil(int n){
+	if(firstNode==NULL){
+		printf("Listede silinecek eleman bulunmamaktadır");
+	}
+	else{
+		temp=firstNode;
+		while(temp->next->data!=n){
+			temp=temp->next;
+		}
+		temp->next=temp2;
+		temp->prev=temp3;
+		free(temp);
+		temp3->next=temp2;
+		temp2->prev=temp3;
+	}
+}
+//Sondan eleman silme
+void sondanSil(){
+	if(firstNode==NULL){
+		printf("Silinecek eleman bulunamadı");
+	}
+	else{
+		temp=firstNode;
+		while(temp->next!=NULL){
+			temp=temp->next;
+		}
+		temp->prev=temp2;
+		temp2->next=temp;
+		free(temp);
+		temp2->next=NULL;
+	}
+}
+//eleman adedi
+void elemanAdedi(){
+	if(firstNode==NULL){
+		printf("listedeki eleman adedi 0'dır'");
+	}
+	else{
+		temp=firstNode;
+		int sayac=0;
+		int toplam=0;
+		while(temp->next!=NULL){
+			sayac++;
+			temp=temp->next;
+			toplam=toplam+sayac;
+		}
+		printf("Listedeki eleman adedi: %d",toplam);
+		
+	}
+}
+
+//Yazdir
+void Yazdir(){
+	if(firstNode==NULL){
+		printf("Listede eleman bulunmamaktadır");
+	}
+	else{
+		temp=firstNode;
+		while(temp->next!=NULL){
+			printf("%d",temp->data);
+			temp=temp->next;
+		}
+		printf("%d",temp->data);
+	}
+}
+
+
+int main(int argc, char *argv[]) {
+	return 0;
+}

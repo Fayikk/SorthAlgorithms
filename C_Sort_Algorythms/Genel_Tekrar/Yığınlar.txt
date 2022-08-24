@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+//yığın yapısı
+//first in last out
+
+struct node{
+	int data;
+	struct node * next;
+
+	
+};
+struct node * top=NULL;
+struct node * temp=NULL;
+
+//Eleman ekle
+void push(int veri){
+	struct node * eleman;
+	eleman=(struct node *)malloc(sizeof(struct node));
+	eleman->data=veri;
+	eleman->next=NULL;
+	if(top==NULL){
+		eleman->next=NULL;
+	}
+	else{
+		eleman->next=top;
+		top=eleman;
+		printf("Eleman eklendi");
+	}
+}
+//Eleman çıkar
+void pop(){
+	if(top==NULL){
+		printf("Yıgında cıkarılacak eleman yoktur");
+	}
+	else{
+		
+		temp=top->next;
+		printf("%d",top->data);
+		free(top);
+		top=temp;
+	}
+}
+//yığının tepesindeki elemanı yazdırma
+struct node * peek(){
+	return top;
+}
+//Yazdir
+void yazdir(){
+	temp=top;
+	while(temp->next!=NULL){
+		printf("%d - ",temp->data);
+		temp=temp->next;
+	}
+}
+
+
+int main(int argc, char *argv[]) {
+	return 0;
+}

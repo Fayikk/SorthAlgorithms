@@ -1,0 +1,137 @@
+#include <stdio.h>
+#include <stdlib.h>
+//Ağaç yapsısı
+
+
+struct node{
+	int data;
+	struct node * right;
+	struct node * left;	
+};
+
+struct node * temp=NULL;
+
+struct node * newNode(int data){
+	struct node * node;
+	node=(struct node *)malloc(sizeof(struct node));
+	node->data=data;
+	node->left=NULL;
+	node->right=NULL;
+	
+	return node;
+	
+}
+
+struct node * elemanEkle(struct node * root,int veri){
+	struct node * eleman=newNode(veri);
+	if(root==NULL){
+		newNode(veri);
+	}
+	else{
+		if(root->data>veri){
+			root->left=elemanEkle(root->left,veri);
+		}
+		else{
+			root->right=elemanEkle(root->right,veri);
+		}
+	}
+	return eleman;
+}
+
+
+struct node * arama(struct node * node,int aranan){
+	temp=node;
+	while(temp->data!=aranan){
+		printf("%d",temp->data);
+		if(temp->data==aranan){
+			printf("eureka!!! %d",temp->data);
+		}
+		else if(aranan<temp->data){
+			temp=temp->left;
+		}
+		else{
+			temp=temp->right;
+		}
+		
+	}
+	printf("Eureka!! : %d",temp->data);
+	
+	return temp;
+}
+
+void Max(struct node * node){
+	if(node==NULL){
+		printf("Agacta eleman yoktur");
+	}
+	else{
+		temp=node;
+		while(temp->right!=NULL){
+			temp=temp->right;
+		}
+		printf(" agactaki maksimum deger:  %d",temp->data);
+	}
+}
+
+void Min(struct node * node){
+	if(node==NULL){
+		printf("Agacta eleman bulunmamaktadır");
+	}
+	else{
+		temp=node;
+		while(temp->left!=NULL){
+			temp=temp->left;
+		}
+		printf("agactaki min eleman degeri: %d ",temp->data);
+	}
+}
+
+
+void preOrder(struct node * node){
+	if(node==NULL){
+		return;
+	}
+	printf("%d",node->data);
+	preOrder(node->left);
+	preOrder(node->right);
+}
+
+void postOrder(struct node * node){
+	if(node==NULL){
+		return;
+	}
+	postOrder(node->left);
+	postOrder(node->right);
+	printf("%d",node->data);
+}
+
+void inOrder(struct node * node){
+	if(node==NULL){
+		return;
+	}
+	inOrder(node->left);
+	printf("%d",node->data);
+	inOrder(node->right);
+}
+
+int main(int argc, char *argv[]) {
+	//Burada yapımızı oluşturalım
+	//Ağaç yapısını oluşturalım.
+	
+	
+	struct node * dugum=newNode(1);
+	dugum->left=newNode(2);
+	dugum->right=newNode(3);
+	dugum->left->left=newNode(4);	
+	dugum->left->right=newNode(5);
+	dugum->right->left=newNode(6);
+	dugum->right->right=newNode(7);
+	
+	Min(dugum);
+	Max(dugum);
+	
+	
+	
+
+	
+	return 0;
+}
