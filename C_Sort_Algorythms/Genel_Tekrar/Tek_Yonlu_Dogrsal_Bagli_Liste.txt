@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+//tek yönlü bağlı liste doğrusal
+
+struct node{
+	int data;
+	struct node * next;
+	struct node * prev;
+};
+struct node * firstNode=NULL;
+struct node * temp=NULL;
+
+void sonaEkle(int veri){
+	struct node * eleman;
+	eleman=(struct node *)malloc(sizeof(struct node));
+	eleman->next=NULL;
+	eleman->prev=NULL;
+	eleman->data=veri;
+	if(firstNode==NULL){
+		firstNode=eleman;
+		
+	}
+	else{
+		temp=firstNode;
+		while(temp->next!=firstNode){
+			temp=temp->next;
+		}
+		temp->next=eleman;
+		firstNode->prev=eleman;
+		eleman->next=firstNode;
+		eleman->prev=temp;
+	}
+}
+
+void basaEkle(int veri){
+	struct node * eleman;
+	eleman=(struct node *)malloc(sizeof(struct node));
+	eleman->data=veri;
+	eleman->next=NULL;
+	eleman->prev=NULL;
+	if(firstNode==NULL){
+		firstNode=eleman;
+		firstNode->next=NULL;
+		firstNode->prev=NULL;
+	}
+	else{
+		
+		temp=firstNode->prev;
+		eleman->next=firstNode;
+		eleman->prev=temp;
+		firstNode=temp;
+	}
+}
+
+
+void Yazdir(){
+	if(firstNode==NULL){
+		printf("eleman bulunamadı");
+	}
+	else{
+		temp=firstNode;
+		while(temp->next!=firstNode){
+			printf("%d",temp->data);
+			temp=temp->next;
+		}
+		printf("%d",temp->data);
+		
+	}
+}
+
+
+int main(int argc, char *argv[]) {
+	printf("\n deneme \n");
+	sonaEkle(1);
+	printf("\n deneme \n");	
+	sonaEkle(2);
+	printf("\n deneme \n");
+	sonaEkle(3);
+	printf("\n deneme \n");
+	Yazdir();
+	printf("\n deneme \n");
+	
+	return 0;
+	
+	
+}

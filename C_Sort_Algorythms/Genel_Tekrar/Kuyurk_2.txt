@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <stdlib.h>
+//queue fifo
+
+
+struct node{
+	int data;
+	
+	struct node * next;
+};
+struct node * temp=NULL;
+struct node * front=NULL;
+struct node * rear=NULL;
+
+void enqueue(int veri){
+	struct node * eleman;
+	eleman=(struct node *)malloc(sizeof(struct node));
+	eleman->data=veri;
+	
+	
+	if(front==NULL){
+		front=rear=eleman;
+	}
+	else{
+		temp=front;
+		while(temp->next!=NULL){
+			temp=temp->next;
+			
+		}
+		temp->next=eleman;
+		rear=eleman;
+	}
+	
+}
+
+
+void dequeue(){
+	if(front==NULL){
+		printf("Kuyrukta eleman bulunmamaktadır");
+	}
+	else{
+		temp=front->next;
+		free(front);
+		front=temp;
+	}
+}
+
+void print(){
+	
+	if(front==NULL){
+		printf("Kuyrukta eleman bulunamadi");
+	}
+	else{
+		
+		temp=front;
+		while(temp->next!=NULL){
+			printf("%d",temp->data);
+			temp=temp->next;
+	}
+	printf("%d",temp->data);
+	}
+	
+
+}
+
+int main(int argc, char *argv[]) {
+	
+	enqueue(1);
+	enqueue(2);
+	enqueue(3);
+	enqueue(4);
+	enqueue(5);
+	
+	
+	print();
+	
+	return 0;
+}
