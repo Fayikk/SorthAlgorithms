@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+//struct yapısında ilk giren son çıkar mantığı geçerlilik göstermektedir
+
+
+struct node{
+	int data;
+	struct node * next;
+};
+struct node * top=NULL;
+struct node * temp=NULL;
+
+void push(int veri){
+	struct node * eleman;
+	eleman=(struct node *)malloc(sizeof(struct node));
+	eleman->data=veri;
+	eleman->next=NULL;
+	if(top==NULL){
+		top=eleman;
+		top->next=NULL;
+	}
+	else{
+		eleman->next=top;
+		top=eleman;
+	}
+	
+}
+
+void peek(){
+	printf("\n %d ",top->data); 
+}
+
+void pop(){
+	if(top==NULL){
+		printf("Yıgında cıkarılacak eleman bulunmamaktadır");
+	}
+	else{
+		temp=top->next;
+		free(top);
+		top=temp;
+	}
+}
+
+void print(){
+	temp=top;
+	while(temp->next!=NULL){
+		printf("%d - ",temp->data);
+		temp=temp->next;
+	}
+	printf("%d - ",temp->data);	
+}
+
+int main(int argc, char *argv[]) {
+push(1);
+push(2);
+push(3);
+push(4);
+push(6);
+push(5);
+push(7);
+pop();
+print();	
+peek();
+	return 0;
+}

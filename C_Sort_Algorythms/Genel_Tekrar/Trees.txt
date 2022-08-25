@@ -1,0 +1,156 @@
+#include <stdio.h>
+#include <stdlib.h>
+//Ağaç Yapısı
+
+struct node{
+	int data;
+	struct node * right;
+	struct node * left;
+};
+struct node * root=NULL;
+struct node * temp=NULL;
+
+
+struct node * newNode(int veri){
+	struct node * node;
+	node=(struct node *)malloc(sizeof(struct node));
+	node->data=veri;
+	node->left=NULL;
+	node->right=NULL;
+	
+	return node;
+}
+
+struct node * elemanEkle(struct node * node,int veri){
+	struct node * eleman=newNode(veri);
+	if(node==NULL){
+		return newNode(veri);
+	}
+	else{
+		if(node->data>veri){
+			node->left=elemanEkle(node->left,veri);
+		}
+		else{
+			node->right=elemanEkle(node->right,veri);
+		}
+	}
+	return eleman;
+}
+
+
+//Max
+//Min
+
+void Max(struct node * node){
+	if(node==NULL){
+		printf("eleman bulunamamktadır");
+		return;
+	}
+	else{
+		temp=node;
+		while(temp->right!=NULL){
+			temp=temp->right;
+		}
+		printf(" Max degeri:  %d  ",temp->data);
+	}
+}
+
+void Min(struct node * node){
+	
+	if(node==NULL){
+		printf("agacta eleman bulunmamaktadır");
+		return;
+	}
+	else{
+		temp=node;
+		while(temp->left!=NULL){
+			temp=temp->left;
+		}
+		printf("%d",temp->data);
+	}
+}
+
+
+struct node * search(struct node * node,int aranan){
+	temp=node;
+	
+	while(temp->data!=aranan){
+		
+		if(temp->data==aranan){
+			printf("Bulundu : %d",temp->data);
+		}
+		else if(temp->data>aranan){
+			temp=temp->left;
+		}
+		else{
+			temp=temp->right;
+		}
+		
+	}
+	printf("Bulundu : %d",temp->data);
+	return temp;
+	
+}
+
+void preOrder(struct node * node){
+	
+	if(node==NULL){
+		
+		return;
+	}
+	else{
+		
+		printf("%d",node->data);
+		preOrder(node->left);
+		preOrder(node->right);
+	}
+}
+
+void postOrder(struct node * node){
+	if(node==NULL){
+		
+		return;
+	}
+	else{
+		postOrder(node->left);
+		printf("%d",node->data);
+		postOrder(node->right);
+	}
+}
+
+void inOrder(struct node * node){
+	if(node==NULL){
+		
+		return;
+	}
+	else{
+		inOrder(node->left);
+		printf("%d",node->data);
+		inOrder(node->right);
+	}
+}
+
+int main(int argc, char *argv[]) {
+struct node *  dugum=newNode(1);
+dugum->left=newNode(2);
+dugum->right=newNode(3);
+dugum->left->left=newNode(4);
+dugum->left->right=newNode(5);
+dugum->right->left=newNode(6);
+dugum->right->right=newNode(7);
+
+//printf("%d \n ::",dugum->left->right->data);
+
+printf("preOrder \n");
+preOrder(dugum);
+
+printf("\nPostOrder: \n");
+postOrder(dugum);
+
+
+printf("\ninOrder:  \n");
+inOrder(dugum);
+
+
+	return 0;
+}
