@@ -1,0 +1,6 @@
+attribute gramerlerinde,3.kural her zaman 
+-->   (<var>.actual_type==<expr>.expected_type)
+
+predicate ifadeleri 2. ve 3.kurallarde geçerlilik sağlamaktadır.
+predicate karşılaştırma yaptığı için her ikiside expr olacak ve gerçek tip ile 
+beklenen tip arasında karşılaştırma yapılacaktır.Eşitlik karşılaştırması

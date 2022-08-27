@@ -1,0 +1,8 @@
+rakam=                     [0-9]
+poztamsayı=                rakam+
+tamsayı=                   (-|€)poztamsayı
+reelsayı=                  tamsayı(€|(poztamsayı))
+harf=                      [a-z]
+değişken_adi=              harf(harf|rakam)*
+
+şeklinde regüler ifadeler gösterilmektedir.

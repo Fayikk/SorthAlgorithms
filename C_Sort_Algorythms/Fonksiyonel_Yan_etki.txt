@@ -1,0 +1,5 @@
+Fonksiyonel yan etki:Bu ifadeyi kısaca açıklayacak olursak
+diyelimki bir a ifadesi gloabl olarak int ve 2 değerinda tanımlansın 
+1.yordam a ifadesinin karesini alırken hemen ardından gelecek olan yordam bu ifadeini 1 fazlasını ekrana yazdırmak istemektedir.
+Ancak eğer farkettiyseniz 2.yordam,ilk yordamdan a uygulanan compenent'ten(process) etkilenecktir.
+Büyük projelerde tam bir baş belasıdır denebilir.

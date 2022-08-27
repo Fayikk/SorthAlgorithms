@@ -1,0 +1,9 @@
+statik tip bağlama:
+değişkenin değeri daha önceden belirtilince bu ifade direkt olarak bellekte değişken tipine göre 
+aalan kaplayacak rastgele bir adres tutacaktır.
+
+Dinamik tip bağlama:
+Değişken değeri daha önceden belli edilmemiş değerler kğmesidir.
+C# programlama dili buna örenek olarak verilebilir.
+yada linked list kullanıp generic ifadelerinden faydalanbilinen programlama dillerinde bu ifadee açıkça görülür.
+<T> ifadesine string,int,float vb değerlerin atamsı yapılabilmektedir.

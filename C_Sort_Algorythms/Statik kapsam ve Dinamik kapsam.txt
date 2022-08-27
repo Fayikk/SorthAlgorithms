@@ -1,0 +1,4 @@
+statik kapsamda alt program çağırılıp ortak olan b değeri üzerinde işlem yapılırsa ve oradan da bir başka altprograma geçilip değer icra edilirse 
+B değeri olarak process'e girilmeden önce bir üst bloktaki default b değeri çalıştırılır.
+
+Dinamik kapsamda ise bu ifade önceki altyordamın b'ye uygulamış olduğu process'ten etkilenecktir.

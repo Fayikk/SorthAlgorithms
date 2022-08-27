@@ -1,0 +1,5 @@
+Şuan da tam olarak bir örenk vereme ancak küçük bir örnek karşılayabilirz.
+açıklayalım:Bir ifade eğer daha az statement deyimler açıklanabiliyorsa daha fazlasına gerek görülmemektedir.
+bir if bloğu içerinde tanımalan bir a değerinin 10dan küçük olması ve a*b değerini(b ninde 10 dan küçük olması şartıyla)
+bu değerlerin çarpımının 100 değerini geçmemesi koşulu  eğe a zaten 0 ve 10 aralığındaysa diğer koşula bakılmaya gerek yoktur çünkü zaten a ve b değerlerinin çarpımı 10'a eşittir.
+Denilebilir.

@@ -1,0 +1,5 @@
+*Derinlik bir düğüm köke olan uzaklığıdır.
+*yükseklik ise bir düğümün kendinden en uzak olan noktasıdır.Aşağı doğru.
+
+
+preOrder,postorder,ınOrder sistemde kuaral göre gidilir ve her yeni düğüm için gerekli şartlar kurala göre sağlanmalıdır.
