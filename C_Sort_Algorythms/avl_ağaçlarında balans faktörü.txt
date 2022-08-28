@@ -1,0 +1,7 @@
+avl ağaçlarında balans faktörüne göre gerekli dengesizlik durumları kontorl edilmektedir.
+bir düğüm hem sol hemde sağ'a dallanmışsa balans değeri 0'dır.
+düğümün sadece sol' dallanması söz konusu ise,balans değeri 1'dir.
+düğüm sadece sağa doğru dallanma gerçekleştirmişse.Balans değeri -1'dir.
+Bunları bilme bir bakıma sınav için önemli olacaktır.
+Aslına bakılırsa avl ağaçlarına eleman ekleeme işlemlerini gerçekleştirmek için uygulanacak olan kod blokları için;
+balans değeri hesaplanarak bulunabilmektedir.
